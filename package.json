@@ -1,0 +1,32 @@
+{
+  "name": "mr-server-proxy",
+  "version": "0.1.0",
+  "main": "bld/program/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node bld/program/main.js",
+    "start-dev": "ts-node --project src/program/tsconfig.json src/program/main.ts",
+    "build": "rimraf bld/program && tsc --project src/program",
+    "lint": "tslint --project src/program",
+    "test": "yarn build && yarn lint"
+  },
+  "devDependencies": {
+    "@magicspace/configs": "^0.1.46",
+    "@magicspace/tslint-rules": "^0.1.41",
+    "@types/express": "^4.16.1",
+    "@types/get-port": "^4.0.1",
+    "@types/http-proxy-middleware": "^0.19.2",
+    "@types/node": "^10.12.21",
+    "prettier": "^1.16.3",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.12.1",
+    "tslint-language-service": "^0.9.9",
+    "typescript": "^3.3.1"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "get-port": "^4.1.0",
+    "http-proxy-middleware": "^0.19.1"
+  }
+}
