@@ -12,6 +12,7 @@ export class DockerService {
     await runCommand(
       `${composeCommand} up --force-recreate --always-recreate-deps --renew-anon-volumes`,
       {
+        ENVIRONMENT: 'mr',
         CI_MERGE_REQUEST_SOURCE_BRANCH_NAME: branch,
         MAKEFLOW_MR_PORT: String(port),
         ...dockerEnv,
@@ -28,6 +29,9 @@ export class DockerService {
 
     let composeCommand = `docker-compose --project-name ${projectName} --file docker-compose-mr.yml`;
 
-    await runCommand(`${composeCommand} down`);
+    await runCommand(`${composeCommand} down`, {
+      ENVIRONMENT: 'mr',
+      CI_MERGE_REQUEST_SOURCE_BRANCH_NAME: branch,
+    });
   }
 }
