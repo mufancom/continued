@@ -1,0 +1,56 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    networks:
+      - webnet
+
+  redis:
+    image: redis:latest
+    command: ['redis-server', '--appendonly', 'yes']
+    networks:
+      - webnet
+
+  proxy:
+    image: proxy-v2ray:latest
+    networks:
+      - webnet
+
+  makeflow_web:
+    image: makeflow-web-mr:${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-latest}
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - '${MAKEFLOW_MR_PORT:-8888}:8080'
+    environment:
+      - APPLICATION=main
+      - ENVIRONMENT=mr
+      - COOKIE_SECRET_KEYS
+      - OSS_KEY
+      - OSS_SECRET
+      - FIREBASE_SERVER_KEY
+      - FCM_APPLICATION_PUBLIC_KEY
+      - FCM_APPLICATION_PRIVATE_KEY
+    networks:
+      - webnet
+
+  makeflow_consumer:
+    image: makeflow-web-mr:${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-latest}
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      - APPLICATION=consumer
+      - ENVIRONMENT=mr
+      - COOKIE_SECRET_KEYS
+      - OSS_KEY
+      - OSS_SECRET
+      - FIREBASE_SERVER_KEY
+      - FCM_APPLICATION_PUBLIC_KEY
+      - FCM_APPLICATION_PRIVATE_KEY
+    networks:
+      - webnet
+
+networks:
+  webnet:

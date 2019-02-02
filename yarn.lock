@@ -36,6 +36,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/dotenv@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@types/dotenv/-/dotenv-6.1.0.tgz#fba2bfd1f28a46eadaa049f3313ebb89bdedfc53"
+  integrity sha512-gmbNb7V1LbJQA4MmH0hVFgqY1cyKsa6RvKC1Xrq0WBnZ0JuuvXKciXx/s8dN0LVXCJd8xO6wIaSFSyUIoGph9g==
+  dependencies:
+    "@types/node" "*"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.npmjs.org/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -424,6 +431,11 @@ diff@^3.1.0, diff@^3.2.0:
   version "3.5.0"
   resolved "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
+
+dotenv@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -1373,7 +1385,7 @@ ts-node@^8.0.2:
     source-map-support "^0.5.6"
     yn "^3.0.0"
 
-tslang@^0.1.9:
+tslang@^0.1.13, tslang@^0.1.9:
   version "0.1.13"
   resolved "https://registry.npmjs.org/tslang/-/tslang-0.1.13.tgz#e7536722bcb9675ff309c7046384901348dbeefd"
   integrity sha512-aEe+OkMJSWVD/wPxHlBT015ATp6K2FJuy4QoTWDFWRg386srcPgOWOiLqknauojdysnZdaO7u0Gmm1JZajor7A==
@@ -1475,6 +1487,13 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+villa@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.npmjs.org/villa/-/villa-0.3.1.tgz#31a00b065fc2a312f1953ec86c8ac2bd4da5d5be"
+  integrity sha512-3HHU00VBOXcgjQKsAqbkXjSR5rFJfToN7jnZYLt4aTAnmH5eHsArLQ5eL0yMMgigU55mPZ4XNOD1zFnKFVSpRA==
+  dependencies:
+    tslib "^1.8.0"
 
 wrappy@1:
   version "1.0.2"

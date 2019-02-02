@@ -1,14 +1,19 @@
 import {Express} from 'express';
 
+import {DockerService} from './docker-service';
 import {PortService} from './port-service';
 
 export class APIService {
-  constructor(private app: Express, private portService: PortService) {
+  constructor(
+    private app: Express,
+    private portService: PortService,
+    private dockerService: DockerService,
+  ) {
     this.initialize();
   }
 
   private initialize(): void {
-    this.app.get('/get-port', async (request, response) => {
+    this.app.get('/start-mr-server', async (request, response) => {
       let {branch} = request.query;
 
       if (!branch) {
@@ -20,9 +25,19 @@ export class APIService {
       let port = await this.portService.generate(branch);
 
       response.send(String(port));
+
+      this.dockerService
+        .run(branch, port)
+        .then(() => {
+          this.portService.remove(branch);
+        })
+        .then(async () => {
+          await this.dockerService.cleanImage(branch);
+        })
+        .catch(console.error);
     });
 
-    this.app.get('/remove-port', (request, response) => {
+    this.app.get('/stop-mr-server', (request, response) => {
       let {branch} = request.query;
 
       if (!branch) {
@@ -31,9 +46,9 @@ export class APIService {
         return;
       }
 
-      this.portService.remove(branch);
+      response.send('Stopping...');
 
-      response.send('Success');
+      this.dockerService.stop(branch).catch(console.error);
     });
   }
 }

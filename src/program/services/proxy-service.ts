@@ -1,11 +1,10 @@
 import {Express} from 'express';
 import proxy from 'http-proxy-middleware';
 
+import {config} from '../config';
 import {getBranchFromHostname} from '../utils';
 
 import {PortService} from './port-service';
-
-const PROXY_TARGET_HOSTNAME = 'localhost';
 
 export class ProxyService {
   constructor(private app: Express, private portService: PortService) {
@@ -31,7 +30,7 @@ export class ProxyService {
       }
 
       proxy({
-        target: `http://${PROXY_TARGET_HOSTNAME}:${port}`,
+        target: `http://${config.PROXY_TARGET_HOSTNAME}:${port}`,
         changeOrigin: true,
       })(request, response, next);
     });

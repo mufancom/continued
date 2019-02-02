@@ -13,6 +13,7 @@ node_modules/
 # Configuration
 
 .config/
+.env
 
 # Building artifacts
 
