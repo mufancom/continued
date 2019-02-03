@@ -11,4 +11,10 @@ interface ProxyConfig {
   FCM_APPLICATION_PUBLIC_KEY: string;
 }
 
-export const config = dotenv.config() as ProxyConfig;
+let {parsed, error} = dotenv.config();
+
+if (error || !parsed) {
+  throw error || new Error('.env parse error');
+}
+
+export const config = (parsed as unknown) as ProxyConfig;

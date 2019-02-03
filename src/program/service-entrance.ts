@@ -14,6 +14,7 @@ export const dockerService = new DockerService();
 export const apiService = new APIService(app, portService, dockerService);
 
 export function listen(): void {
-  let port = config.PROXY_PORT || 80;
+  let port = parseInt(config.PROXY_PORT) || 80;
+
   app.listen(port, () => console.info(`Listening on port ${port}...`));
 }
