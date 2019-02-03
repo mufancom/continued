@@ -29,7 +29,9 @@ export class DockerService {
   }
 
   async stop(branch: string): Promise<void> {
-    let projectName = `makeflow-web-${branch}`;
+    let subdomain = getSubdomainFromBranch(branch);
+
+    let projectName = `makeflow-web-${subdomain}`;
 
     let composeCommand = `docker-compose --project-name ${projectName} --file docker-compose-mr.yml`;
 
