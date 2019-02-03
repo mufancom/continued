@@ -24,6 +24,13 @@ export function getBranchFromHostname(hostname: string): string | undefined {
   return branch;
 }
 
+export function getSubdomainFromBranch(branch: string): string {
+  return branch
+    .split('/')
+    .reverse()
+    .join('.');
+}
+
 export async function runCommand(
   command: string,
   env?: Dict<string> | undefined,

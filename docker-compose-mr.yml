@@ -17,7 +17,7 @@ services:
       - webnet
 
   makeflow_web:
-    image: makeflow-web-mr:${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-latest}
+    image: makeflow-web-mr:${MERGE_REQUEST_SUBDOMAIN:-latest}
     depends_on:
       - mongo
       - redis
@@ -36,7 +36,7 @@ services:
       - webnet
 
   makeflow_consumer:
-    image: makeflow-web-mr:${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-latest}
+    image: makeflow-web-mr:${MERGE_REQUEST_SUBDOMAIN:-latest}
     depends_on:
       - mongo
       - redis

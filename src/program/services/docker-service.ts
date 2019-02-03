@@ -1,9 +1,11 @@
 import {config} from '../config';
-import {runCommand} from '../utils';
+import {getSubdomainFromBranch, runCommand} from '../utils';
 
 export class DockerService {
   async run(branch: string, port: number): Promise<void> {
-    let projectName = `makeflow-web-${branch}`;
+    let subdomain = getSubdomainFromBranch(branch);
+
+    let projectName = `makeflow-web-${subdomain}`;
 
     let composeCommand = `docker-compose --project-name ${projectName} --file docker-compose-mr.yml`;
 
@@ -13,7 +15,7 @@ export class DockerService {
       `${composeCommand} up --force-recreate --always-recreate-deps --renew-anon-volumes`,
       {
         ENVIRONMENT: 'mr',
-        CI_MERGE_REQUEST_SOURCE_BRANCH_NAME: branch,
+        MERGE_REQUEST_SUBDOMAIN: subdomain,
         MAKEFLOW_MR_PORT: String(port),
         ...dockerEnv,
       },
@@ -21,7 +23,9 @@ export class DockerService {
   }
 
   async cleanImage(branch: string): Promise<void> {
-    await runCommand(`docker rmi --force makeflow-web-mr:${branch}`);
+    await runCommand(
+      `docker rmi --force makeflow-web-mr:${getSubdomainFromBranch(branch)}`,
+    );
   }
 
   async stop(branch: string): Promise<void> {
@@ -31,7 +35,7 @@ export class DockerService {
 
     await runCommand(`${composeCommand} down`, {
       ENVIRONMENT: 'mr',
-      CI_MERGE_REQUEST_SOURCE_BRANCH_NAME: branch,
+      MERGE_REQUEST_SUBDOMAIN: getSubdomainFromBranch(branch),
     });
   }
 }
