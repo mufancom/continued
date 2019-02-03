@@ -38,10 +38,30 @@ export class APIService {
     });
 
     this.app.get('/stop-mr-server', (request, response) => {
-      let {branch} = request.query;
+      let {merge_request: mrInfo} = request.body;
+
+      if (!mrInfo) {
+        response.send('Can only be called by GitLab merge request hook');
+
+        return;
+      }
+
+      let {source_branch: branch, state} = mrInfo;
 
       if (!branch) {
-        response.send('Branch should not be empty');
+        response.send('Unknown source branch');
+
+        return;
+      }
+
+      if (!state) {
+        response.send('Unknown merge request state');
+
+        return;
+      }
+
+      if (state === 'opened') {
+        response.send('Merge request still opened');
 
         return;
       }
