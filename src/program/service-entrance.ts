@@ -5,7 +5,7 @@ import {APIService, DockerService, PortService, ProxyService} from './services';
 
 let app = express();
 
-app.all('/', (req, _res, next) => {
+app.use('*', (req, _res, next) => {
   console.info('[Visit]', {
     path: req.path,
     params: req.params,
