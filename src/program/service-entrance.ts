@@ -5,6 +5,17 @@ import {APIService, DockerService, PortService, ProxyService} from './services';
 
 let app = express();
 
+app.all('/', (req, _res, next) => {
+  console.info('[Visit]', {
+    path: req.path,
+    params: req.params,
+    body: req.body,
+    query: req.query,
+  });
+
+  next();
+});
+
 export const portService = new PortService();
 
 export const dockerService = new DockerService();
