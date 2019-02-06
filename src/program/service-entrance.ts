@@ -11,6 +11,7 @@ app.use('*', (req, _res, next) => {
     params: req.params,
     body: req.body,
     query: req.query,
+    headers: req.headers,
   });
 
   next();
