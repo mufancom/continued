@@ -5,7 +5,7 @@ export class DockerService {
   async run(branch: string, port: number): Promise<void> {
     let subdomain = getSubdomainFromBranch(branch);
 
-    let projectName = `makeflow-web-${subdomain}`;
+    let projectName = `makeflow-web-mr-${subdomain}`;
 
     let composeCommand = `docker-compose --project-name ${projectName} --file docker-compose-mr.yml`;
 
@@ -24,14 +24,14 @@ export class DockerService {
 
   async cleanImage(branch: string): Promise<void> {
     await runCommand(
-      `docker rmi --force makeflow-web-mr:${getSubdomainFromBranch(branch)}`,
+      `docker rmi --force makeflow-web-mr-${getSubdomainFromBranch(branch)}`,
     );
   }
 
   async stop(branch: string): Promise<void> {
     let subdomain = getSubdomainFromBranch(branch);
 
-    let projectName = `makeflow-web-${subdomain}`;
+    let projectName = `makeflow-web-mr-${subdomain}`;
 
     let composeCommand = `docker-compose --project-name ${projectName} --file docker-compose-mr.yml`;
 
