@@ -26,6 +26,7 @@ services:
     environment:
       - APPLICATION=main
       - ENVIRONMENT=mr
+      - MERGE_REQUEST_SUBDOMAIN
       - COOKIE_SECRET_KEYS
       - OSS_KEY
       - OSS_SECRET
@@ -43,6 +44,7 @@ services:
     environment:
       - APPLICATION=consumer
       - ENVIRONMENT=mr
+      - MERGE_REQUEST_SUBDOMAIN
       - COOKIE_SECRET_KEYS
       - OSS_KEY
       - OSS_SECRET
