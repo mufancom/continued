@@ -26,6 +26,8 @@ export class DockerService {
     await runCommand(
       `docker rmi --force makeflow-web-mr-${getSubdomainFromBranch(branch)}`,
     );
+
+    await runCommand(`docker image prune --force`);
   }
 
   async stop(branch: string): Promise<void> {

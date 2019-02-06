@@ -40,8 +40,13 @@ export class APIService {
     this.app.get('/stop-mr-server', (request, response) => {
       let {merge_request: mrInfo} = request.body;
 
+      let tag = '[API][stop-mr-server]';
+
+      console.info(tag, 'client in');
+
       if (!mrInfo) {
         response.send('Can only be called by GitLab merge request hook');
+        console.info(tag, 'unknown call');
 
         return;
       }
@@ -50,23 +55,27 @@ export class APIService {
 
       if (!branch) {
         response.send('Unknown source branch');
+        console.info(tag, 'empty source branch');
 
         return;
       }
 
       if (!state) {
         response.send('Unknown merge request state');
+        console.info(tag, 'unknown merge request state');
 
         return;
       }
 
       if (state === 'opened') {
         response.send('Merge request still opened');
+        console.info(tag, 'merge request still opened');
 
         return;
       }
 
       response.send('Stopping...');
+      console.info(tag, 'stopping', branch);
 
       this.dockerService.stop(branch).catch(console.error);
     });
