@@ -30,6 +30,8 @@ services:
       - COOKIE_SECRET_KEYS
       - OSS_KEY
       - OSS_SECRET
+      - SMS_KEY
+      - SMS_SECRET
       - FIREBASE_SERVER_KEY
       - FCM_APPLICATION_PUBLIC_KEY
       - FCM_APPLICATION_PRIVATE_KEY
@@ -48,6 +50,8 @@ services:
       - COOKIE_SECRET_KEYS
       - OSS_KEY
       - OSS_SECRET
+      - SMS_KEY
+      - SMS_SECRET
       - FIREBASE_SERVER_KEY
       - FCM_APPLICATION_PUBLIC_KEY
       - FCM_APPLICATION_PRIVATE_KEY
