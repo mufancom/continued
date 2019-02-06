@@ -38,18 +38,18 @@ export class APIService {
     });
 
     this.app.get('/stop-mr-server', (request, response) => {
-      let {merge_request: mrInfo} = request.body;
-
       let tag = '[API][stop-mr-server]';
 
       console.info(tag, 'client in');
 
-      if (!mrInfo) {
+      if (!request.body || !request.body.merge_request) {
         response.send('Can only be called by GitLab merge request hook');
         console.info(tag, 'unknown call');
 
         return;
       }
+
+      let {merge_request: mrInfo} = request.body;
 
       let {source_branch: branch, state} = mrInfo;
 
