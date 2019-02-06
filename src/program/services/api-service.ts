@@ -37,7 +37,7 @@ export class APIService {
         .catch(console.error);
     });
 
-    this.app.get('/stop-mr-server', (request, response) => {
+    this.app.post('/stop-mr-server', (request, response) => {
       let tag = '[API][stop-mr-server]';
 
       console.info(tag, 'client in');
