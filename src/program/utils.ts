@@ -36,5 +36,9 @@ export async function runCommand(
   commandProcess.stdout.pipe(process.stdout);
   commandProcess.stderr.pipe(process.stderr);
 
-  await v.awaitable(commandProcess);
+  try {
+    await v.awaitable(commandProcess);
+  } catch (error) {
+    console.error(error);
+  }
 }
