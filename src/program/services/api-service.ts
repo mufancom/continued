@@ -53,14 +53,14 @@ export class APIService {
         headers: request.headers,
       });
 
-      if (!request.body || !request.body.merge_request) {
+      if (!request.body || request.body.event_type !== 'merge_request') {
         response.send('Can only be called by GitLab merge request hook');
         console.info(tag, 'unknown call');
 
         return;
       }
 
-      let {merge_request: mrInfo} = request.body;
+      let {object_attributes: mrInfo} = request.body;
 
       let {source_branch: branch, state} = mrInfo;
 
