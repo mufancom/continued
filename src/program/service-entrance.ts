@@ -21,9 +21,14 @@ export const portService = new PortService();
 
 export const dockerService = new DockerService();
 
-export const apiService = new APIService(app, portService, dockerService);
-
 export const proxyService = new ProxyService(app, portService);
+
+export const apiService = new APIService(
+  app,
+  portService,
+  dockerService,
+  proxyService,
+);
 
 export function listen(): void {
   let port = parseInt(config.PROXY_PORT) || 80;

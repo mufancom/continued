@@ -3,12 +3,14 @@ import {Express} from 'express';
 
 import {DockerService} from './docker-service';
 import {PortService} from './port-service';
+import {ProxyService} from './proxy-service';
 
 export class APIService {
   constructor(
     private app: Express,
     private portService: PortService,
     private dockerService: DockerService,
+    private proxyService: ProxyService,
   ) {
     this.initialize();
   }
@@ -31,6 +33,7 @@ export class APIService {
         .run(branch, port)
         .then(() => {
           this.portService.remove(branch);
+          this.proxyService.removeProxy(port);
         })
         .catch(console.error);
     });
