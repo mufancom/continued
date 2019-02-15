@@ -34,6 +34,6 @@ export class PortService {
       return false;
     }
 
-    return this.portSet.delete(port);
+    return this.portSet.delete(port) && this.branchToPortMap.delete(branch);
   }
 }
