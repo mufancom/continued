@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import {Express} from 'express';
 
 import {DockerService} from './docker-service';
@@ -36,6 +37,8 @@ export class APIService {
         })
         .catch(console.error);
     });
+
+    this.app.use('/stop-mr-server', bodyParser.json());
 
     this.app.post('/stop-mr-server', (request, response) => {
       let tag = '[API][stop-mr-server]';
