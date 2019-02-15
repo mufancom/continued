@@ -45,6 +45,14 @@ export class APIService {
 
       console.info(tag, 'client in');
 
+      console.info('[Visit]', {
+        path: request.path,
+        params: request.params,
+        body: request.body,
+        query: request.query,
+        headers: request.headers,
+      });
+
       if (!request.body || !request.body.merge_request) {
         response.send('Can only be called by GitLab merge request hook');
         console.info(tag, 'unknown call');
