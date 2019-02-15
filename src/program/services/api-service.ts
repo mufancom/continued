@@ -29,13 +29,7 @@ export class APIService {
 
       response.send(String(port));
 
-      this.dockerService
-        .run(branch, port)
-        .finally(() => {
-          this.portService.remove(branch);
-          this.proxyService.removeProxy(port);
-        })
-        .catch(console.error);
+      this.dockerService.run(branch, port).catch(console.error);
     });
 
     this.app.use('/stop-mr-server', bodyParser.json());
@@ -44,14 +38,6 @@ export class APIService {
       let tag = '[API][stop-mr-server]';
 
       console.info(tag, 'client in');
-
-      console.info('[Visit]', {
-        path: request.path,
-        params: request.params,
-        body: request.body,
-        query: request.query,
-        headers: request.headers,
-      });
 
       if (!request.body || request.body.event_type !== 'merge_request') {
         response.send('Can only be called by GitLab merge request hook');
@@ -91,6 +77,13 @@ export class APIService {
       this.dockerService
         .stop(branch)
         .finally(async () => {
+          let port = this.portService.get(branch);
+
+          if (port) {
+            this.portService.remove(branch);
+            this.proxyService.removeProxy(port);
+          }
+
           await this.dockerService.cleanImage(branch);
         })
         .catch(console.error);
