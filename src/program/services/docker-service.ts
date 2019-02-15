@@ -44,6 +44,6 @@ export class DockerService {
       MERGE_REQUEST_SUBDOMAIN: subdomain,
     });
 
-    await v.sleep(10000);
+    await v.sleep(20000);
   }
 }
