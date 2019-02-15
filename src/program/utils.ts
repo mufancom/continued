@@ -16,19 +16,13 @@ export function getBranchFromHostname(hostname: string): string | undefined {
 
   let subDomain = matches[1];
 
-  let branch = subDomain
-    .split('.')
-    .reverse()
-    .join('/');
+  let branch = subDomain.replace('-', '/');
 
   return branch;
 }
 
 export function getSubdomainFromBranch(branch: string): string {
-  return branch
-    .split('/')
-    .reverse()
-    .join('.');
+  return branch.replace('/', '-');
 }
 
 export async function runCommand(
