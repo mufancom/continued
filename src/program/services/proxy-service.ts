@@ -32,6 +32,7 @@ export class ProxyService {
       proxy({
         target: `http://${config.PROXY_TARGET_HOSTNAME}:${port}`,
         changeOrigin: true,
+        logLevel: 'silent',
       })(request, response, next);
     });
   }

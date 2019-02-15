@@ -23,11 +23,11 @@ export class DockerService {
   }
 
   async cleanImage(branch: string): Promise<void> {
-    await runCommand(
-      `docker rmi --force makeflow-web-mr-${getSubdomainFromBranch(branch)}`,
-    );
+    let subdomain = getSubdomainFromBranch(branch);
 
-    await runCommand(`docker image prune --force`);
+    await runCommand('./scripts/clean-mr-images.sh', {
+      MERGE_REQUEST_SUBDOMAIN: subdomain,
+    });
   }
 
   async stop(branch: string): Promise<void> {
