@@ -38,7 +38,5 @@ export async function runCommand(
 
   try {
     await v.awaitable(commandProcess);
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }

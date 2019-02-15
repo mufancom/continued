@@ -1,3 +1,5 @@
+import * as v from 'villa';
+
 import {config} from '../config';
 import {getSubdomainFromBranch, runCommand} from '../utils';
 
@@ -41,5 +43,7 @@ export class DockerService {
       ENVIRONMENT: 'mr',
       MERGE_REQUEST_SUBDOMAIN: subdomain,
     });
+
+    await v.sleep(10000);
   }
 }
