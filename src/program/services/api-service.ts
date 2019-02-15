@@ -37,8 +37,6 @@ export class APIService {
     this.app.post('/stop-mr-server', (request, response) => {
       let tag = '[API][stop-mr-server]';
 
-      console.info(tag, 'client in');
-
       if (!request.body || request.body.event_type !== 'merge_request') {
         response.send('Can only be called by GitLab merge request hook');
         console.info(tag, 'unknown call');
