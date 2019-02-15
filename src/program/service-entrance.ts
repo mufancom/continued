@@ -5,6 +5,14 @@ import {APIService, DockerService, PortService, ProxyService} from './services';
 
 let app = express();
 
+export const portService = new PortService();
+
+export const dockerService = new DockerService();
+
+export const apiService = new APIService(app, portService, dockerService);
+
+export const proxyService = new ProxyService(app, portService);
+
 app.post('*', (req, _res, next) => {
   console.info('[Visit]', {
     path: req.path,
@@ -16,14 +24,6 @@ app.post('*', (req, _res, next) => {
 
   next();
 });
-
-export const portService = new PortService();
-
-export const dockerService = new DockerService();
-
-export const apiService = new APIService(app, portService, dockerService);
-
-export const proxyService = new ProxyService(app, portService);
 
 export function listen(): void {
   let port = parseInt(config.PROXY_PORT) || 80;
