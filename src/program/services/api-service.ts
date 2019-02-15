@@ -31,7 +31,7 @@ export class APIService {
 
       this.dockerService
         .run(branch, port)
-        .then(() => {
+        .finally(() => {
           this.portService.remove(branch);
           this.proxyService.removeProxy(port);
         })
@@ -90,7 +90,7 @@ export class APIService {
 
       this.dockerService
         .stop(branch)
-        .then(async () => {
+        .finally(async () => {
           await this.dockerService.cleanImage(branch);
         })
         .catch(console.error);
