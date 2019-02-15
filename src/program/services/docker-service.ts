@@ -39,7 +39,7 @@ export class DockerService {
 
     await runCommand(`${composeCommand} down`, {
       ENVIRONMENT: 'mr',
-      MERGE_REQUEST_SUBDOMAIN: getSubdomainFromBranch(branch),
+      MERGE_REQUEST_SUBDOMAIN: subdomain,
     });
   }
 }

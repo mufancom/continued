@@ -32,9 +32,6 @@ export class APIService {
         .then(() => {
           this.portService.remove(branch);
         })
-        .then(async () => {
-          await this.dockerService.cleanImage(branch);
-        })
         .catch(console.error);
     });
 
@@ -88,7 +85,12 @@ export class APIService {
       response.send('Stopping...');
       console.info(tag, 'stopping', branch);
 
-      this.dockerService.stop(branch).catch(console.error);
+      this.dockerService
+        .stop(branch)
+        .then(async () => {
+          await this.dockerService.cleanImage(branch);
+        })
+        .catch(console.error);
     });
   }
 }
