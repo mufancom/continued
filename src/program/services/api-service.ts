@@ -1,9 +1,13 @@
 import bodyParser from 'body-parser';
 import {Express} from 'express';
 
+import {getSubdomainFromBranch} from '../utils';
+
 import {DockerService} from './docker-service';
 import {PortService} from './port-service';
 import {ProxyService} from './proxy-service';
+
+const MR_HOSTNAME = 'mr.makeflow.io';
 
 export class APIService {
   constructor(
@@ -27,7 +31,7 @@ export class APIService {
 
       let port = await this.portService.generate(branch);
 
-      response.send(String(port));
+      response.send(`https://${getSubdomainFromBranch(branch)}.${MR_HOSTNAME}`);
 
       this.dockerService.run(branch, port).catch(console.error);
     });
