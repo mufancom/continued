@@ -34,6 +34,9 @@ export class PortService {
       return false;
     }
 
-    return this.portSet.delete(port) && this.branchToPortMap.delete(branch);
+    let deletedFromSet = this.portSet.delete(port);
+    let deletedFromMap = this.branchToPortMap.delete(branch);
+
+    return deletedFromSet && deletedFromMap;
   }
 }
