@@ -13,6 +13,8 @@ export class DockerService {
 
     let {PROXY_PORT, PROXY_TARGET_HOSTNAME, ...dockerEnv} = config;
 
+    console.info(`Starting image makeflow-web-mr-${subdomain}...`);
+
     await runCommand(
       `${composeCommand} up --force-recreate --always-recreate-deps --renew-anon-volumes`,
       {
