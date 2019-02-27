@@ -1,5 +1,5 @@
 import {Express} from 'express';
-import proxy from 'http-proxy-middleware';
+import proxy from 'http-ws-proxy-middleware';
 
 import {config} from '../config';
 import {getBranchFromHostname} from '../utils';
