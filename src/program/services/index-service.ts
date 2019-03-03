@@ -4,7 +4,7 @@ import {MR_SERVICE_HOSTNAME, getFullHostnameFromBranch} from '../utils';
 
 import {PortService} from './port-service';
 
-const INDEX_PAGE_HOSTNAME = MR_SERVICE_HOSTNAME;
+const INDEX_PAGE_HOSTNAME = 'localhost' || MR_SERVICE_HOSTNAME;
 
 export class IndexService {
   constructor(private app: Express, private portService: PortService) {
@@ -22,13 +22,13 @@ export class IndexService {
 
       let branches = this.portService.branches.sort();
 
+      branches.push('fet/as', 'feature/ass');
+
       response.send(`
         <html>
           <head>
             <title>MR Temporary Servers - Makeflow</title>
             <style>
-            @import "compass/css3";
-
             body {
               font-family: Helvetica, Verdana, sans-serif;
             }
@@ -134,7 +134,7 @@ export class IndexService {
                       name = names.join('/');
                     }
 
-                    return `<li><a href="https://${getFullHostnameFromBranch(
+                    return `<li><a target="_blank" href="https://${getFullHostnameFromBranch(
                       branch,
                     )}">${
                       type ? `<span class="tag tag-${type}">${type}</span>` : ''
