@@ -4,7 +4,7 @@ import {MR_SERVICE_HOSTNAME, getFullHostnameFromBranch} from '../utils';
 
 import {PortService} from './port-service';
 
-const INDEX_PAGE_HOSTNAME = 'localhost' || MR_SERVICE_HOSTNAME;
+const INDEX_PAGE_HOSTNAME = MR_SERVICE_HOSTNAME;
 
 export class IndexService {
   constructor(private app: Express, private portService: PortService) {
@@ -21,8 +21,6 @@ export class IndexService {
       }
 
       let branches = this.portService.branches.sort();
-
-      branches.push('fet/as', 'feature/ass');
 
       response.send(`
         <html>
