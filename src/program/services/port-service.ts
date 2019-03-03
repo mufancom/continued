@@ -4,6 +4,10 @@ export class PortService {
   private branchToPortMap = new Map<string, number>();
   private portSet = new Set<number>();
 
+  get branches(): string[] {
+    return Array.from(this.branchToPortMap.keys());
+  }
+
   get(branch: string): number | undefined {
     let port = this.branchToPortMap.get(branch);
 

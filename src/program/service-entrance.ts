@@ -1,13 +1,21 @@
 import express from 'express';
 
 import {config} from './config';
-import {APIService, DockerService, PortService, ProxyService} from './services';
+import {
+  APIService,
+  DockerService,
+  IndexService,
+  PortService,
+  ProxyService,
+} from './services';
 
 let app = express();
 
 export const portService = new PortService();
 
 export const dockerService = new DockerService();
+
+export const indexService = new IndexService(app, portService);
 
 export const proxyService = new ProxyService(app, portService);
 
