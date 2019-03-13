@@ -16,6 +16,16 @@ export class ProxyService {
   }
 
   removeProxy(port: number): void {
+    let portToProxyMap = this.portToProxyMap;
+
+    let proxy = portToProxyMap.get(port);
+
+    if (!proxy) {
+      return;
+    }
+
+    proxy.close();
+
     this.portToProxyMap.delete(port);
   }
 

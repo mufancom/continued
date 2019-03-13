@@ -687,10 +687,10 @@ http-proxy@^1.17.0:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-ws-proxy-middleware@^0.19.5:
-  version "0.19.5"
-  resolved "https://registry.npmjs.org/http-ws-proxy-middleware/-/http-ws-proxy-middleware-0.19.5.tgz#ba038e4cf693abf8618e54b51840ed5cc67ee1fb"
-  integrity sha512-IH1Ifeng21xZEdAGqY9oL2tOts4tpRVHw2qtp2ex+hT2y82Rb/4vLShKfr+iVn5aWEtc6LhvyPNTgBUK2BtvVA==
+http-ws-proxy-middleware@^0.19.7:
+  version "0.19.7"
+  resolved "https://registry.npmjs.org/http-ws-proxy-middleware/-/http-ws-proxy-middleware-0.19.7.tgz#958b434276d7f81ac4207c8560638eeedc011c0c"
+  integrity sha512-BVV2Td6Kdd456et2EYogmfy02h0PELfAMQNVfwJwgMaZfx1bqHe9yORwQsdILFRCJTKmgjgke7d7H9lw4x0kQg==
   dependencies:
     http-proxy "^1.17.0"
     is-glob "^4.0.0"
